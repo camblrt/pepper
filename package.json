@@ -1,0 +1,23 @@
+{
+  "name": "pepper",
+  "version": "1.0.0",
+  "description": "pepper the great",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JulienVera/pepper.git"
+  },
+  "author": "Julien Vera",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JulienVera/pepper/issues"
+  },
+  "homepage": "https://github.com/JulienVera/pepper#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
