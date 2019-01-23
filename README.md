@@ -1,3 +1,5 @@
+#### This is a fork of the real project available @ gitlab.com:Majeur/pepper.git
+
 # Pepper Quizz - Robot.io
 
 Robot io est un robot permettant d'attirer les étudiants sur le stand de CPE Lyon lors d'un salon étudiant. Pour se faire Pepper fait une présentation de l'école en racontant une histoire suivant une vidéo et il présente un quizz aux étudiants afin de faire connaître l'école de manière ludique.
