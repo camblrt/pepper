@@ -1,0 +1,29 @@
+{
+    "1": {
+        "id": 1,
+        "question": "Que signifie l'acronyme CPE?",
+        "answer1": "Comcombre, Poire, Echalotte",
+        "answer2": "Chimie, Physique, Electronique",
+        "answer3": "Conseiller principal d'éducation",
+        "answer4": "Chien, Pingouin, Elephant",
+        "goodanswer": "answer2"
+    },
+    "2": {
+        "id": 2,
+        "question": "Quels sont les filieres á CPE?",
+        "answer1": "Agriculteur, Cuisine, Marecher",
+        "answer2": "Prof, Directeur, Educateur",
+        "answer3": "Zoologie, Eleveur, Garde Chien",
+        "answer4": "CGP, SN, IRC",
+        "goodanswer": "answer4"
+    },
+    "3": {
+        "id": 3,
+        "question": "Oú se situe l'école CPE?",
+        "answer1": "www",
+        "answer2": "xxx",
+        "answer3": "yyy",
+        "answer4": "zzz",
+        "goodanswer": "answer3"
+    }
+}

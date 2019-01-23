@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="/libs/qimessaging/2/qimessaging.js"></script>
+        <title>Watch socket only</title>
+
+    </head>
+    <body>
+		<div>
+            <img id="image" src=group.jpg style="width:100%; height:100%;"/>
+        </div>
+
+        <script type="text/javascript">
+        function httpGet(theUrl) {
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open( "GET", theUrl, true ); // false for synchronous request
+            xmlHttp.send();
+
+            xmlHttp.onreadystatechange = processRequest;
+ 
+            function processRequest(e) {
+                if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                    var response = JSON.parse(JSON.parse(xmlHttp.responseText));
+                    
+                    if(previousCmd != response.num_movement){
+                        console.log(response)
+                        previousCmd = response.num_movement
+                        parsingAction(response.id_movement,response.content)
+                    }
+                }
+            }
+        }
+
+            function sleep(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
+
+            //main function - fait des http get toutes les x secondes sur le server heroku
+            // choisi pour le sleep
+            async function run() {
+                while(true){
+                var httpresult = httpGet(herokuServer+'/movement');
+                await sleep(2000);
+
+                }
+            }
+
+
+
+            //////////////////////////////////////////////////
+
+            ///// PEPPER ACTIONS
+
+            ////////////////////////////////////////////////
+            function parsingAction(id_movement,content){
+                switch(id_movement){
+                    case "0":
+                        console.log("QI_DireHey")
+                        QI_DireHey()
+                        break;
+                    case "1":
+                        console.log("QI_Happy")
+                        QI_Happy()
+                        break;
+                    case "2":
+                        console.log("QI_Give")
+                        QI_Give()
+                        break;
+                    case "3":
+                        console.log("QI_Thinking")
+                        QI_Thinking()
+                        break;
+                    case "4":
+                        console.log("QI_YouKnowWhat")
+                        QI_YouKnowWhat()
+                        break;
+                    case "5":
+                        console.log("QI_Bored")
+                        QI_Bored()
+                        break;
+                    case "6":
+                        console.log("QI_WakeUp")
+                        QI_WakeUp()
+                        break;
+                    case "7":
+                        console.log("QI_Sleep")
+                        QI_Sleep()
+                        break;
+                    case "8":
+                        console.log("QI_PresentationDisplay + QI_AnimatedSpeach ")
+                        QI_PresentationDisplay()
+                        QI_MusicPlay()
+                        QI_AnimatedSpeach()
+                        break;
+                    case "9":
+                        console.log("QI_AutonomousOn")
+                        QI_AutonomousOn()
+                        break;
+                    case "10":
+                        console.log("QI_AutonomousOff")
+                        QI_AutonomousOff()
+                        break;
+                    case "11":
+                        console.log("QI_ResetPepper")
+                        QI_ResetPepper()
+                        break;
+                    case "100":
+                        console.log("QI_TTS")
+                        QI_TTS(content)
+                        break;
+                    case "103":
+                        console.log("QI_QuizDisplay")
+                        QI_QuizDisplay()
+                        break;
+                    case "104":
+                        console.log("QI_ResetPepper")
+                        QI_ResetPepper()
+                        break;
+                    case "105":
+                        console.log("QI_AutonomousOff")
+                        QI_AutonomousOff()
+                        break;
+                }
+            }
+
+
+             function QI_DireHey(){
+               QiSession(function (session) {
+                    console.log("Session correctement initialisée");
+                    session.service("ALAnimationPlayer").then(async function (ALAnimationPlayer) {
+                        ALAnimationPlayer.run("animations/Stand/Gestures/Hey_1")
+                    }, function (error) {
+                        console.log("Une erreur est survenue:"); console.log(error);
+                    });
+
+                    session.service("ALTextToSpeech").then(function (tts) {
+                        tts.say("Bonjour ! ")
+                    }, function (error) {
+                        console.log("Une erreur est survenue:"); console.log(error);
+                    });
+            
+                }, function () {
+                console.log("Session terminée");
+                });
+            }
+
+            function QI_Happy(){
+               QiSession(function (session) {
+                    console.log("Session correctement initialisée");
+                    session.service("ALAnimationPlayer").then( async function (ALAnimationPlayer) {
+                        ALAnimationPlayer.run("animations/Stand/Emotions/Positive/Happy_4")
+                    }, function (error) {
+                        console.log("Une erreur est survenue:"); console.log(error);
+                    });
+            
+                }, function () {
+                console.log("Session terminée");
+                });
+            }
+
+            function QI_Give(){
+               QiSession(function (session) {
+                    console.log("Session correctement initialisée");
+                    session.service("ALAnimationPlayer").then(async function (ALAnimationPlayer) {
+                        ALAnimationPlayer.run("animations/Stand/Gestures/Give_4")
+                        await sleep(1500)
+                        ALAnimationPlayer.reset()
+                        ALAnimationPlayer.run("animations/Stand/Emotions/Positive/Peaceful_1")
+                    }, function (error) {
+                        console.log("Une erreur est survenue:"); console.log(error);
+                    });
+            
+                }, function () {
+                console.log("Session terminée");
+                });
+            }
+
+            function QI_Thinking(){
+               QiSession(function (session) {
+                    console.log("Session correctement initialisée");
+                    session.service("ALAnimationPlayer").then(async function (ALAnimationPlayer) {
+                        ALAnimationPlayer.run("animations/Stand/Gestures/Thinking_8")
+                        await sleep(2200)
+                        ALAnimationPlayer.reset()
+                        ALAnimationPlayer.run("animations/Stand/Emotions/Positive/Peaceful_1")
+                    }, function (error) {
+                        console.log("Une erreur est survenue:"); console.log(error);
+                    });
+            
+                }, function () {
+                console.log("Session terminée");
+                });
+            }
+
+            function QI_YouKnowWhat(){
+               QiSession(function (session) {
+                    console.log("Session correctement initialisée");
+                    session.service("ALAnimationPlayer").then(async function (ALAnimationPlayer) {
+                        ALAnimationPlayer.run("animations/Stand/Gestures/YouKnowWhat_2")
+                        await sleep(1200)
+                        ALAnimationPlayer.reset()
+                        ALAnimationPlayer.run("animations/Stand/Emotions/Positive/Peaceful_1")
+                    }, function (error) {
+                        console.log("Une erreur est survenue:"); console.log(error);
+                    });
+            
+                }, function () {
+                console.log("Session terminée");
+                });
+            }
+
+            function QI_Bored(){
+               QiSession(function (session) {
+                    console.log("Session correctement initialisée");
+                    session.service("ALAnimationPlayer").then(async function (ALAnimationPlayer) {
+                        ALAnimationPlayer.run("animations/Stand/Emotions/Negative/Bored_1")	
+                        await sleep(2200)
+                        ALAnimationPlayer.reset()
+                        ALAnimationPlayer.run("animations/Stand/Emotions/Positive/Peaceful_1")
+                    }, function (error) {
+                        console.log("Une erreur est survenue:"); console.log(error);
+                    });
+            
+                }, function () {
+                console.log("Session terminée");
+                });
+            }
+
+            function QI_ResetPepper(){
+                QiSession(function (session) {
+                    console.log("Session correctement initialisée");
+                    session.service("ALAnimatedSpeech").then(function (ALAnimatedSpeech) {
+                        console.log("Animated")
+                        for (var idNum in idSpeechs){
+                            console.log(idSpeechs[idNum])
+                            ALAnimatedSpeech.stop(idSpeechs[idNum]);
+                        }
+                        idSpeechs = []
+                    }, function (error) {
+                        console.log("Une erreur est survenue:");
+                    });
+
+                    session.service("ALAudioPlayer").then(function (ALAudioPlayer) {
+                        console.log("Audio stop")
+                        ALAudioPlayer.stopAll()
+                    }, function (error) {
+                        console.log("Une erreur est survenue:");
+                    });
+
+                    session.service("ALTabletService").then(async function (ALTabletService) {
+                        console.log("Video stop")
+                        ALTabletService.stopVideo()
+                        await sleep(1000)
+                        ALTabletService.showImage("https://upload.wikimedia.org/wikipedia/fr/4/47/Logo_CPE_Lyon_112009.jpg")
+                    }, function (error) {
+                        console.log("Une erreur est survenue:"); console.log(error);
+                    });
+
+                    session.service("ALAnimationPlayer").then(async function (ALAnimationPlayer) {
+                        console.log("Position neutre")
+                        ALAnimationPlayer.run("animations/Stand/Emotions/Positive/Peaceful_1")
+                    }, function (error) {
+                        console.log("Une erreur est survenue:"); console.log(error);
+                    });
+            
+                    session.service("ALAutonomousLife").then(function (ALAutonomousLife) {
+                        console.log("Autonomous neutre")
+                        ALAutonomousLife.setAutonomousAbilityEnabled("All", true)
+                    }, function (error) {
+                        console.log("Une erreur est survenue:");console.log(error)
+                    });
+                }, function () {
+                console.log("Session terminée");
+                });
+            }
+
+            function QI_WakeUp(){
+                QiSession(function (session) {
+                    console.log("Session correctement initialisée");
+                    session.service("ALMotion").then(function (ALMotion) {
+                        ALMotion.wakeUp();	
+                    }, function (error) {
+                        console.log("Une erreur est survenue:"); console.log(error);
+                    });
+            
+                }, function () {
+                console.log("Session terminée");
+                });
+            }
+
+
+            function QI_Sleep(){
+                QiSession(function (session) {
+                    console.log("Session correctement initialisée");
+                    session.service("ALMotion").then(function (ALMotion) {
+                    ALMotion.rest();	
+                    }, function (error) {
+                        console.log("Une erreur est survenue:"); console.log(error);
+                    });
+            
+                }, function () {
+                console.log("Session terminée");
+                });
+            }
+
+
+            function QI_TTS(speach){
+                QiSession(function (session) {
+                    console.log("Session correctement initialisée");
+                    session.service("ALTextToSpeech").then(function (tts) {
+                    tts.say(speach);	
+                    }, function (error) {
+                        console.log("Une erreur est survenue:"); console.log(error);
+                    });
+            
+                }, function () {
+                console.log("Session terminée");
+                });
+            }
+
+           
+
+  
+            function QI_AnimatedSpeach(speach){
+                var text = "\\pau=500\\ Bonjour à tous ! \\pau=400\\ Je m'appel Pepper et je suis le premier robot umano ide! \\pau=1500\\ . Et ça sur la vidéo, \\pau=700\\ c'est mon ami baxter. "
+                + "\\pau=2000\\ Nous sommes tous les deux des robots de l'école CPE Lyon. \\pau=800\\. Nous avons été programmé par des étudiants"
+                +" \\pau=2000\\. Cette année notre école à 25 ans. \\pau=1000\\ Alors laisser moi vous expliquer pourquoi elle est si unique. \\pau=1000\\"
+                + "Le C de CPE c'est pour chimie. \\pau=500\\ Ici on forme des ingénieurs pour toutes les spécialités, \\pau=400\\ comme la chimie organique, la chimie analytique,"
+                + "le génie des procédés, la formulation, les matérieux et les bio technologies. \\pau=1000\\ Par ailleurs 3 prix nobel sortent de CPE, ce n'est pas pour rien."
+                + "\\pau=1000\\ Nos ingénieurs sont dans tous les secteurs d'activités comme la chimie, la pharmacie, la cosmeto, l'environnement et l'énergie."
+                + "Mais CPE ce n'est pas que de la chimie, allons voir ce qu'il se passe ailleurs."
+                + "Dans les laboratoires que l'on voit, on 1à a faire à des spécialistes de l'électronique, l'imagerie, l'informatique, des réseaux," 
+                + "des systèmes embarqués et de la robotique. C'est notre fillière science du numérique, et c'est grace à eux que je peux vous présenter mon école."
+                + "CPE possède également un fillière en alternance, la moitié du temps en entreprise, la moitié du temps sur les bancs de l'école."
+                + "Cette filière est spécialisé en informatique et réseaux de communication."
+                + "On a vu les formations, mais CPE ce n'est pas que ça. Parlons un peu des chiffres !" 
+                + "Le nombre d'étudiant que nous accueillons chaque annee augmente. Nous sommes ravis d'acceuillir 1200 étudiant !"
+                + "Chaque étudiant arrive d'horizon différent, avec des projets différents et intégrè une de nos 3 fillière" 
+                + "CPe c'est avoir les clés en main pour travailler n'importe ou dans le monde, et même effectuer des specialisations à l'étranger"
+                + "CPE, c'est surtout une grande famille ou les élèves partagent de superbe moment tout au long de l'année."
+                + "Des gros évenements organiser par le bureau des élèves comme le week end d'integration, la ski week, mais aussi plein de rencontre grace"
+                + "aux très nombreuses associations de CPE qui rapprochent et soudent les promos ! \\pau=10000\\"
+                + "Merci a tous pour avoir regarder cette vidéo"
+                QiSession(async function (session) {
+                    console.log("Session correctement initialisée");
+                    var configuration = {"bodyLanguageMode":"random"}
+                    await sleep(6500)
+                    session.service("ALAnimatedSpeech").then(function (ALAnimatedSpeech) {
+                        idCurrent = ALAnimatedSpeech.pCall("say",text, configuration)
+                        idCurrent.then(function (result){
+                            idSpeechs.push(result)
+                        })	        
+                    }, function (error) {
+                        console.log("Une erreur est survenue:"); console.log(error);
+                    });
+                }, function () {
+                console.log("Session terminée");
+                });
+            }
+
+            function QI_PresentationDisplay(){
+               QiSession(function (session) {
+                    console.log("Session correctement initialisée");
+                    session.service("ALTabletService").then(function (ALTabletService) {
+                        ALTabletService.playVideo("http://"+localIP+"/apps/demojavascript-193171/cpe.mp4")	
+                    }, function (error) {
+                        console.log("Une erreur est survenue:"); console.log(error);
+                    });
+                }, function () {
+                console.log("Session terminée");
+                });
+            }
+
+            function QI_QuizDisplay(){
+               QiSession(function (session) {
+                    console.log("Session correctement initialisée");
+                    session.service("ALTabletService").then(function (ALTabletService) {
+                        ALTabletService.loadUrl(herokuServer+"/0924toiwdhg2TOKAREV223578098765redcvbnkiuytrew34567uyhgbnmk")	
+                        ALTabletService.showWebview()
+                    }, function (error) {
+                        console.log("Une erreur est survenue:"); console.log(error);
+                    });
+                }, function () {
+                console.log("Session terminée");
+                });
+            }
+
+            function QI_MusicPlay(){
+               QiSession(function (session) {
+                    console.log("Session correctement initialisée");
+                    session.service("ALAudioPlayer").then(function (ALAudioPlayer) {
+                        ALAudioPlayer.stopAll()
+                        ALAudioPlayer.playFile("http://"+localIP+"/apps/demojavascript-193171/musicpres.mp3", 0.25 , 0.0 )
+                    }, function (error) {
+                        console.log("Une erreur est survenue:"); console.log(error);
+                    });
+                }, function () {
+                console.log("Session terminée");
+                });
+            }
+
+            function QI_AutonomousOn(){
+               QiSession(function (session) {
+                    console.log("Session correctement initialisée");
+                    session.service("ALAutonomousLife").then(function (ALAutonomousLife) {
+                        ALAutonomousLife.setAutonomousAbilityEnabled("All", true)
+                    }, function (error) {
+                        console.log("Une erreur est survenue:");
+                        console.log(error)
+                    });
+                }, function () {
+                console.log("Session terminée");
+                });
+            }
+
+
+            function QI_AutonomousOff(){
+               QiSession(function (session) {
+                    console.log("Session correctement initialisée");
+                    session.service("ALAutonomousLife").then(function (ALAutonomousLife) {
+                        ALAutonomousLife.setAutonomousAbilityEnabled("All", false)
+                    }, function (error) {
+                        console.log("Une erreur est survenue:");
+                        console.log(error)
+                    });
+                }, function () {
+                console.log("Session terminée");
+                });
+            }
+
+
+            //Pour faire fonctionner MakePepperDanse il faut lancer le main en local au début
+            //Le main crée un serveur sur le port 5000, donc utilisable à notre demande
+            function QI_MakePepperDance(){
+                QiSession(function (session) {
+                    console.log("Session correctement initialisée");
+                    session.service("ALTabletService").then(function (ALTabletService) {
+                        ALTabletService.loadUrl(localIP+":5000/danser")	
+                        console.log("inside danser")
+                        ALTabletService.showWebview()
+                    }, function (error) {
+                        console.log("Une erreur est survenue:"); console.log(error);
+                    });
+                }, function () {
+                console.log("Session terminée");
+                });
+            }
+
+            function QI_StopMakePepperDance(){
+                QiSession(function (session) {
+                    console.log("Session correctement initialisée");
+                    session.service("ALTabletService").then(function (ALTabletService) {
+                        ALTabletService.loadUrl(localIP+":5000/stopDanser")	
+                        console.log("inside stop")
+                        ALTabletService.showWebview()
+                    }, function (error) {
+                        console.log("Une erreur est survenue:"); console.log(error);
+                    });
+                }, function () {
+                console.log("Session terminée");
+                });
+            }
+
+            var herokuServer = "https://pepper-prod.herokuapp.com"
+            var localIP = '192.168.1.201'
+            var previousCmd=-1; //besoin pour ne pas repeter les actions 
+            var idSpeechs = [] //besoin pour reset lors de speach
+            run();
+            
+
+        </script>
+    </body>
+</html>

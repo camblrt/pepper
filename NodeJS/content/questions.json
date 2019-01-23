@@ -1,0 +1,30 @@
+{
+  "id": "questions",
+  "1": {
+    "id": 1234567,
+    "question": "Que signifie l'acronyme CPE ?",
+    "answer1": "Comcombre, Poire, Echalotte",
+    "answer2": "Chimie, Physique, Electronique",
+    "answer3": "Conseiller principal d'éducation",
+    "answer4": "Chien, Pingouin, Elephant",
+    "goodanswer": "answer2"
+  },
+  "2": {
+    "id": 356,
+    "question": "Où est situé CPE ?",
+    "answer1": "Lyon",
+    "answer2": "Villeurbanne",
+    "answer3": "Lille",
+    "answer4": "Toulon",
+    "goodanswer": "answer2"
+  },
+  "3": {
+    "id": 9876,
+    "question": "Combien d'associations étudiantes sont présentes à CPE ?",
+    "answer1": "8",
+    "answer2": "14",
+    "answer3": "35",
+    "answer4": "56",
+    "goodanswer": "answer3"
+  }
+}

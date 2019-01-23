@@ -1,0 +1,11 @@
+
+  .btn-answer-container{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    margin: .625rem 0;
+  }
+  .btn-answer{
+    margin: 5px;
+    padding: 40px;
+  }

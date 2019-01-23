@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<package uuid="demojavascript-193171" version="0.0.3">
+ <names>
+  <name lang="en_US">DemoJavaScript</name>
+  <name lang="en_US-x-scrald">DemoJavaScript</name>
+  <name lang="fr_FR">Demo-Javascript</name>
+  <name lang="fr_FR-x-scrald">Demo-Javascript</name>
+ </names>
+ <descriptions>
+  <description lang="fr_FR">Démonstration Javascript</description>
+  <description lang="fr_FR-x-scrald">Démonstration Javascript</description>
+ </descriptions>
+ <supportedLanguages>
+  <language>fr_FR</language>
+ </supportedLanguages>
+ <descriptionLanguages>
+  <language>fr_FR</language>
+ </descriptionLanguages>
+ <contents>
+  <behaviorContent path="behavior_1">
+   <userRequestable/>
+   <nature>interactive</nature>
+   <permissions/>
+  </behaviorContent>
+ </contents>
+ <requirements>
+  <naoqiRequirement minVersion="2.4" maxVersion="2.4"/>
+  <robotRequirement model="JULIETTE"/>
+ </requirements>
+</package>

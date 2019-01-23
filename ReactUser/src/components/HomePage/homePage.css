@@ -1,0 +1,39 @@
+  @font-face {
+    font-family: Montserrat-Black;
+    src: url('../../lib/fonts/Montserrat/Montserrat-Black.ttf'); 
+  }
+  @font-face {
+    font-family: Montserrat-Light;
+    src: url('../../lib/fonts/Montserrat/Montserrat-Light.ttf'); 
+  }
+  
+    .HomePage {
+      text-align: center;
+      background: #373373;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .Main-logo {
+      animation: Main-logo-spin infinite 20s linear;
+      height: 40vmin;
+    }
+    
+    .l1-txt1 {
+      font-family: Montserrat-Black;
+      font-size: 30px;
+      color: #eeeeee;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+  
+    .l1-txt2 {
+      font-family: Montserrat-Light;
+      font-size: 15px;
+      color: #eeeeee;
+      line-height: 1.2;
+    }
+  

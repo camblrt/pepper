@@ -1,0 +1,12 @@
+
+  .AnswerPanelPepper .btn-answer-container{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    margin: .625rem 0;
+  }
+  .AnswerPanelPepper .btn-answer{
+    margin: 5px;
+    padding: 8%;
+    font-size: 2rem;
+  }
